@@ -7,7 +7,7 @@ function TextExample() {
     const [event, setEvent] = useState([]);
 
     useEffect(() => {
-        axios.get('https://iic-backend-lcp6.onrender.com/events')
+        axios.get('http://localhost:8000/events')
             .then((response) => {
                 setEvent(response.data);
             });
@@ -20,7 +20,7 @@ function TextExample() {
                 {event.map((event) => (
                     <Col xs={12} sm={6} md={4} lg={3} key={event._id} className="mb-4 d-flex align-items-stretch" style={{cursor:"pointer"}}>
                         <Card className="event-card" onClick={() => window.location.href = `/event/${event._id}`}>
-                            {/* <Card.Img variant="top" src={`https://iic-backend-lcp6.onrender.com/file/${event.image}`} alt="Event Image" className="event-image" /> */}
+                            {/* <Card.Img variant="top" src={`http://localhost:8000/file/${event.image}`} alt="Event Image" className="event-image" /> */}
                             <Card.Body>
                                 <Card.Title className="event-title">{event.name}</Card.Title>
                                 <Card.Subtitle className="mb-2 text-muted event-subtitle">{event.description}</Card.Subtitle>
