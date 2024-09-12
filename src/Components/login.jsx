@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Button } from 'react-bootstrap';
+import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -10,7 +13,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8000/login', {
+            const response = await fetch('https://iic-backend-lcp6.onrender.com/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -19,9 +22,15 @@ const Login = () => {
             });
 
             const result = await response.json();
+            console.log(result)
             if (response.ok) {
-                alert('Login successful');
-                localStorage.setItem('token', result.token);
+                toast.success('Login successful');
+                localStorage.setItem('token', `${result.token}//${result.isAdmin}`);
+                // localStorage.setItem('isAdmin', );
+                setTimeout(()=>{
+                    window.location.reload() 
+                },500)
+                // console.log(result)
             } else {
                 alert(result.message);
             }
@@ -32,7 +41,6 @@ const Login = () => {
 
     return (
         <div>
-            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Email:</label>
@@ -42,7 +50,10 @@ const Login = () => {
                     <label>Password:</label>
                     <input type="password" name="password" value={formData.password} onChange={handleChange} required />
                 </div>
-                <button type="submit">Login</button>
+                <div>Want to signup?<a className='mx-2' href={"/signup"}>signup</a></div>
+                <div className="d-flex justify-content-end mt-2">
+                    <Button className='mx-2' variant="primary" type={"submit"} >Login</Button>
+                </div>
             </form>
         </div>
     );

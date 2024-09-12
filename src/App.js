@@ -1,5 +1,6 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import {Toaster} from "react-hot-toast"
 
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
@@ -17,7 +18,9 @@ function App() {
   return (
     <>
     <BrowserRouter>
+    <div className='page-container d-flex' style={{flexDirection:"column",minHeight:"100vh"}} >
         <Navbar/>
+        <main className='content' style={{flex:1}}>
         <Routes>
           <Route path="/" element={<Home/>} extact></Route>
           <Route path="/events" element={<Event/>} extact></Route>
@@ -27,11 +30,13 @@ function App() {
           <Route path="/contact" element={<Contact/>} extact></Route>
           <Route path="/login" element={<Login/>} extact></Route>
           <Route path="/signup" element={<Signup/>} extact></Route>
-         <Route path="/adminidea" element={<Hub/>} extact></Route>
+          <Route path="/adminidea" element={<Hub/>} extact></Route>
          </Routes>
-        
-      </BrowserRouter>
+        </main>
+    </div>
       <Footer/>
+      <Toaster/>
+      </BrowserRouter>
       </>
   );
 }

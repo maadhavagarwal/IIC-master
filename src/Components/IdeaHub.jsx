@@ -1,8 +1,13 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import "../CSS/IdeaHub.css"; // Custom CSS for responsiveness
+import toast from "react-hot-toast";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const IdeaHub = () => {
+
+  const Navigate=useNavigate()
+
   const {
     register,
     handleSubmit,
@@ -26,13 +31,14 @@ const IdeaHub = () => {
     formData.append('pptUpload', data.pptUpload[0]); // Access the first file
 
     try {
-      const response = await fetch('http://localhost:8000/idea', {
+      const response = await fetch('https://iic-backend-lcp6.onrender.com/idea', {
         method: 'POST',
         body: formData,
       });
 
       if (response.ok) {
-        alert('Idea submitted successfully');
+        toast.success('Idea submitted successfully');
+        Navigate("/")
       } else {
         const errorData = await response.json();
         alert(`Failed to submit idea: ${errorData.message || response.status}`);
@@ -44,7 +50,9 @@ const IdeaHub = () => {
   };
 
   return (
-    <div className="form-container">
+    <div className="form-container my-3">
+      <h4>Submit your Idea here...</h4>
+      <hr/>
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Team Name/Project Name */}
         <div className="form-group">

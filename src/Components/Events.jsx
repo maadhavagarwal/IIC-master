@@ -41,7 +41,7 @@ const Events = () => {
 
   const fetchEvent = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/events/${id}`);
+      const response = await axios.get(`https://iic-backend-lcp6.onrender.com/events/${id}`);
       setEvent(response.data);
       setGroupSize(response.data.groupSize);
       setParticipantData(
@@ -60,6 +60,7 @@ const Events = () => {
 
   useEffect(() => {
     fetchEvent();
+    console.log(event)
   }, [id]);
 
   const handleShow = () => setShow(true);
@@ -89,13 +90,14 @@ const Events = () => {
   
       // Send a single request with the array of participants
       const response = await axios.post(
-        `http://localhost:8000/events/${id}/participants`,
+        `https://iic-backend-lcp6.onrender.com/events/${id}/participants`,
         { participants: participantData }
       );
   
       if (response.status === 200) {
         handleClose(); // Close the modal on success
         alert("Participants registered successfully");
+        console.log(participantData)
       } else {
         alert("Failed to register participants");
       }
@@ -113,7 +115,7 @@ const Events = () => {
         <Col md={8} className="event-info mb-4">
           <Image
             src={
-              `http://localhost:8000/file/${event.image}` 
+              `https://iic-backend-lcp6.onrender.com/file/${event.image}` 
             }
             alt={event.name}
             fluid
@@ -142,9 +144,9 @@ const Events = () => {
             >
               Register Participants
             </Button>
-              {!showModal &&
-              <a href="https://drive.google.com/file/d/119hiywrd_vKWtiPH-_WHtdFt7-qKsT8w/preview" style={{width:"100%"}}>
-                <Button variant="secondary" className="rulebook-btn" onClick={handleOpenModal}>  
+              {!showModal && event &&
+              <a href={`https://drive.google.com/file/d/${event.rule}`} style={{width:"100%"}}>
+                <Button variant="secondary" className="rulebook-btn w-100">  
                   <FaBook className="me-2" />
                   Rule Book
                 </Button>

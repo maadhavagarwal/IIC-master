@@ -5,7 +5,7 @@ import { FaI, FaX } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
-    <footer className="footer mt-5">
+    <footer className="footer mt-5" style={{bottom:"0px"}}>
       <div className="footer-content d-flex justify-content-between">
         <div className="contact-info">
           <div className="contact-item">

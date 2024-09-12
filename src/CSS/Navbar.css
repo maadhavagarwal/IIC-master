@@ -108,11 +108,15 @@ body {
     .login-button {
       display: none;
     }
-  
+    
     .menu-icon {
       display: block;
     }
-  
+    
+    .navbar-nav{
+      display: none;
+    }
+
     .dropdown {
       display: block;
     }
@@ -121,7 +125,11 @@ body {
     .login-button {
       display: none;
     }
-  
+    
+    .navbar-nav{
+      display: none;
+    }
+
     .menu-icon {
       display: block;
     }
@@ -129,5 +137,64 @@ body {
     .dropdown {
       display: block;
     }
+    .img1{
+      width: 40px!important;
+    }
+    .img2{
+      width: 90px!important;
+    }
+    .img3{
+      width: 50px!important;
+    }
+    .img4{
+      width: 70px!important;
+    }
+    .loginPopUp{
+      margin-top: 50%;
+    }
+  }
+  
+  .modal-custom {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  }
+  
+  .modal-body-custom {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .navbar-nav2 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item-custom {
+    margin: 15px 0;
+  }
+  
+  .nav-item-custom a {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+  }
+  
+  .nav-item-custom a:hover {
+    color: #0056b3;
+  }
+  
+  .logi-button-custom {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logi-button-custom:hover {
+    background-color: #0056b3;
   }
   
